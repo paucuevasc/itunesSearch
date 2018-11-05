@@ -16,6 +16,7 @@ export class ItunesService {
   private _artistId = 0;
 
   constructor(private jsonp: Jsonp) { }
+
   public search(searchWord): Promise<any> {
     return this.jsonp.get(`${API.SEARCH}callback=JSONP_CALLBACK&media=music&country=US&entity=musicArtist&term=${searchWord}`)
     .toPromise()
