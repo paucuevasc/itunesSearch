@@ -28,6 +28,7 @@ export class Message {
 export class NavbarComponent {
 
 
+
 selectionMade = false;
 
   constructor(private itunesService: ItunesService,
@@ -44,7 +45,6 @@ selectionMade = false;
     });
   }
   selectArtist(artistId: number, artistName: string, selectionMade: boolean) {
-
     const message = new Message(artistId, artistName, selectionMade = true);
     console.log( message );
     this.selectionMade = message.selectionMade;
@@ -52,6 +52,9 @@ selectionMade = false;
 
 
   }
+
+
+
 
 
 }

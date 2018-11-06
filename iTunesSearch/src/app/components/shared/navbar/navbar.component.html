@@ -1,4 +1,4 @@
-<nav style='background-color: blue;'>
+<nav style='background-color: #137d83;'>
     <a class="navbar-brand" href="#">
         <img src="assets/img/gesture-tap.png" width="30" height="30" alt="">
     </a>
@@ -10,13 +10,13 @@
 
         <div class="form-inline my-2 my-lg-0">
             <input class="" type="text" placeholder="Buscar heroe" #searchBox (keyup)="search(searchBox.value)" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="search(searchBox.value)" type="button">Search</button>
 
         </div>
     </div>
 </nav>
 
-<div *ngIf='searchResults.length > 0 &&  selectionMade === false'>
+<div *ngIf='(searchResults.length > 0) &&  (selectionMade === false)'>
     <p *ngFor='let result of searchResults'>
         <a id='{{result.artistId}}' (click)="selectArtist(result.artistId,result.artistName)" href='#'>{{result.artistName}}</a>
     </p>

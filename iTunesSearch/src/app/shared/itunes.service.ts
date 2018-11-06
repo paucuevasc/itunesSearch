@@ -18,10 +18,8 @@ export class ItunesService {
   constructor(private jsonp: Jsonp) { }
 
   public search(searchWord): Promise<any> {
-    return this.jsonp.get(`${API.SEARCH}callback=JSONP_CALLBACK&media=music&country=US&entity=musicArtist&term=${searchWord}`)
-    .toPromise()
-    .then(data => data.json().results)
-    .catch(this.handleError);
+    return this.jsonp.get(`${API.SEARCH}callback=JSONP_CALLBACK&media=music&country=US&entity=musicArtist&term=${searchWord}&limit=10`)
+    .toPromise().then(data => data.json().results).catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

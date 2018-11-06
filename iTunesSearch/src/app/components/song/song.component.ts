@@ -32,6 +32,7 @@ artistName: string;
 
 
 
+
   constructor(private itunesService: ItunesService,
               private displayService: DisplayService) {
                 this.subscription =
@@ -44,7 +45,9 @@ artistName: string;
                   console.log(this.artistId);
                   console.log(this.artistName);
                   console.log(this.selectionMade);
+                  if (this.selectionMade === true) {
                   this.getAlbums(this.artistId);
+                  }
                 });
                }
 songResults = [];
@@ -53,9 +56,16 @@ songResults = [];
     this.itunesService.getSongs(this.artistId).then((results: Array<any>) => {
       console.log(results);
       this.songResults = results;
+      for (let i = 0; i < this.songResults.length; i++) {
+        this.songResults[i].favorite = false;
+      }
 
 
 });
+  }
+
+  toFavorites(result) {
+    result.favorite = !result.favorite;
   }
 }
 

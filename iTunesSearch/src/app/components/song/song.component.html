@@ -2,8 +2,16 @@
     <h1> {{ this.artistName }}</h1>
     <div *ngFor='let result of songResults'>
         <img src="{{ result.artworkUrl100}}">
-        <p>
-            {{ result.trackName }}
-        </p>
+        <div>
+            <p>
+                {{ result.trackName }}
+            </p>
+            <p>
+                {{ result.collectionName }}
+            </p>
+            <img *ngIf='result.favorite' src="assets/img/heart-clicked.png" (click)=toFavorites(result)>
+            <img *ngIf='!result.favorite' src="assets/img/heart-unclicked.png" (click)=toFavorites(result)>
+
+        </div>
     </div>
 </div>
