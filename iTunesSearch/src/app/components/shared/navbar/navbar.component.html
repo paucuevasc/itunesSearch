@@ -15,7 +15,8 @@
         </div>
     </div>
 </nav>
-<div *ngIf='searchResults.length > 0'>
+
+<div *ngIf='searchResults.length > 0 &&  selectionMade === false'>
     <p *ngFor='let result of searchResults'>
         <a id='{{result.artistId}}' (click)="selectArtist(result.artistId,result.artistName)" href='#'>{{result.artistName}}</a>
     </p>

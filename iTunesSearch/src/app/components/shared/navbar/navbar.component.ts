@@ -3,6 +3,19 @@ import { ItunesService } from '../../../shared/itunes.service';
 import { DisplayService } from '../../../shared/display.service';
 import { Observable } from 'rxjs';
 
+export class Message {
+  artistId: number;
+  selectedArtist: string;
+  selectionMade: boolean;
+
+
+  constructor(artistId: number, selectedArtist: string, selectionMade: boolean) {
+    this.artistId = artistId;
+    this.selectedArtist = selectedArtist;
+    this.selectionMade = selectionMade;
+  }
+}
+
 
 @Component({
   selector: 'app-navbar',
@@ -10,40 +23,35 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 
-export class NavbarComponent implements OnInit {
 
+
+export class NavbarComponent {
+
+
+selectionMade = false;
 
   constructor(private itunesService: ItunesService,
     private displayService: DisplayService) { }
 
 
   searchResults = [];
-  artistId = 0;
-  selectedArtist: string;
-  selectionMade = false;
-
-
-  sendMessage(): void {
-    this.displayService.sendMessage(this.selectionMade);
-  }
-
 
   search(searchWord) {
+    this.selectionMade = false;
     this.itunesService.search(searchWord).then(results => {
       this.searchResults = results;
       console.log(results);
-      this.selectionMade = true;
-      this.displayService.sendMessage(this.selectionMade);
     });
   }
-  selectArtist(artistId: number, artistName: string) {
-    this.artistId = artistId;
-    this.selectedArtist = artistName;
-    console.log(this.selectedArtist);
-    this.selectionMade = true;
+  selectArtist(artistId: number, artistName: string, selectionMade: boolean) {
+
+    const message = new Message(artistId, artistName, selectionMade = true);
+    console.log( message );
+    this.selectionMade = message.selectionMade;
+    this.displayService.sendMessage( message );
+
 
   }
-  ngOnInit() {
-  }
+
 
 }

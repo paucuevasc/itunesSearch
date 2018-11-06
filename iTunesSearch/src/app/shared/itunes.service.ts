@@ -28,20 +28,20 @@ export class ItunesService {
     console.log(error);
     return Promise.reject(error.message || error);
   }
-  public getAlbums(artistId: number): Promise<any> {
+  public getSongs(artistId: number): Promise<any> {
 
-    if (artistId === this._artistId) {return new Promise(resolve => resolve(this._albums));
+    if (artistId === this._artistId) {return new Promise(resolve => resolve(this._albums)); }
     this._artistId = artistId;
-    return this.jsonp.get(`${API.LOOKUP}callback=JSONP_CALLBACK&entity=album&id=${artistId}`)
+    return this.jsonp.get(`${API.LOOKUP}callback=JSONP_CALLBACK&entity=song&id=${artistId}`)
     .toPromise()
     .then(data => {
       this._albums = data.json().results.filter(results => {
-        return results.wrapperType === 'collection';
+        return results.wrapperType === 'track';
       });
 
       return this._albums;
     })
     .catch(this.handleError);
   }
-  }
+
 }

@@ -9,11 +9,11 @@ export class DisplayService {
   private subject = new Subject<any>();
 
   sendMessage(message) {
-    this.subject.next({text: message });
+    this.subject.next( message );
   }
 
   getMessage(): Observable<any> {
-    return this .subject.asObservable();
+    return this.subject.asObservable();
   }
 
   constructor() { }
