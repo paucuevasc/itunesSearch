@@ -21,7 +21,7 @@ export class Message {
   selector: 'app-song',
   templateUrl: './song.component.html',
   providers: [ItunesService],
-  styleUrls: ['./song.component.css']
+  styleUrls: ['./song.component.scss']
 })
 export class SongComponent {
 receivedMessage: Message;

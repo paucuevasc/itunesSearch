@@ -1,22 +1,20 @@
-<nav style='background-color: #137d83;'>
-    <a class="navbar-brand" href="#">
+<nav id="navbar-container">
+    <a id="navbar-brand" href="#">
         <img src="assets/img/gesture-tap.png" width="30" height="30" alt="">
     </a>
 
 
 
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div id="navbar-content">
 
-        <div class="form-inline my-2 my-lg-0">
-            <input class="" type="text" placeholder="Buscar heroe" #searchBox (keyup)="search(searchBox.value)" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" (click)="search(searchBox.value)" type="button">Search</button>
-
+        <div id="searchbox-container">
+            <input id="searchbox" type="text" placeholder="SEARCH" #searchBox (keyup)="search(searchBox.value)" aria-label="Search">
         </div>
     </div>
 
-    <div style="background-image: url(/assets/img/fav_counter_backg.png); width: 45px; height: 45px;">
-        <p>
+    <div id="counter-container">
+        <p id="counter">
             {{this.favCounter}}
         </p>
     </div>
