@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItunesService } from '../../../shared/itunes.service';
 import { DisplayService } from '../../../shared/display.service';
-import { Observable } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { CounterService } from '../../../shared/counter.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -45,6 +45,7 @@ selectionMade = false;
 
 
   searchResults = [];
+
 
   search(searchWord) {
     this.selectionMade = false;
