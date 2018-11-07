@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ItunesService } from '../../../shared/itunes.service';
 import { DisplayService } from '../../../shared/display.service';
 import { Observable } from 'rxjs';
+import { CounterService } from '../../../shared/counter.service';
+import { Subscription } from 'rxjs/Subscription';
 
 export class Message {
   artistId: number;
@@ -27,12 +29,19 @@ export class Message {
 
 export class NavbarComponent {
 
-
+favCounter = 0;
+subscription: Subscription;
 
 selectionMade = false;
 
   constructor(private itunesService: ItunesService,
-    private displayService: DisplayService) { }
+    private displayService: DisplayService,
+    private counterService: CounterService) {
+      this.subscription =
+                this.counterService.getFavCounter().subscribe((favCounter) => {
+                  this.favCounter = favCounter;
+              });
+    }
 
 
   searchResults = [];

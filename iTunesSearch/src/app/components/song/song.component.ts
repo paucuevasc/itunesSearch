@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ItunesService } from '../../shared/itunes.service';
 import { DisplayService } from '../../shared/display.service';
+import { CounterService } from '../../shared/counter.service';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -28,12 +29,13 @@ selectionMade = false;
 subscription: Subscription;
 artistId: number;
 artistName: string;
-
+favCount: number;
 
 
 
 
   constructor(private itunesService: ItunesService,
+              private counterService: CounterService,
               private displayService: DisplayService) {
                 this.subscription =
                 this.displayService.getMessage().subscribe((message: Message) => {
@@ -66,6 +68,12 @@ songResults = [];
 
   toFavorites(result) {
     result.favorite = !result.favorite;
+    if (result.favorite === true) {
+        this.favCount = 1;
+    } else {
+      this.favCount = -1;
+    }
+    this.counterService.sendFavCount( this.favCount );
   }
 }
 
